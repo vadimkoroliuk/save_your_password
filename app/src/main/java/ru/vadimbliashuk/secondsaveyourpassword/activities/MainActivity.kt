@@ -37,12 +37,6 @@ class MainActivity : AppCompatActivity() {
                 password = 0
             }
 
-            btn_click.setOnClickListener {
-                val intent = Intent(this, AllLoginsActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-
             val listener = View.OnClickListener { v ->
                 val b = v as Button
                 password = password * 10 + b.text.toString().toInt()
