@@ -1,12 +1,10 @@
-package ru.vadimbliashuk.secondsaveyourpassword.ui
+package ru.vadimbliashuk.secondsaveyourpassword.activities
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_add_new_login.*
-import kotlinx.android.synthetic.main.activity_all_logins.*
 import ru.vadimbliashuk.secondsaveyourpassword.R
 import ru.vadimbliashuk.secondsaveyourpassword.data.UserViewModel
 import ru.vadimbliashuk.secondsaveyourpassword.models.UserEntity

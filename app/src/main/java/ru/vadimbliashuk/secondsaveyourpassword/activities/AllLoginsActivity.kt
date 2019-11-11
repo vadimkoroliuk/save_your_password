@@ -1,4 +1,4 @@
-package ru.vadimbliashuk.secondsaveyourpassword.ui
+package ru.vadimbliashuk.secondsaveyourpassword.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,8 +15,11 @@ import ru.vadimbliashuk.secondsaveyourpassword.R
 import ru.vadimbliashuk.secondsaveyourpassword.adapter.UserListAdapter
 import ru.vadimbliashuk.secondsaveyourpassword.data.UserViewModel
 import ru.vadimbliashuk.secondsaveyourpassword.models.UserEntity
+import ru.vadimbliashuk.secondsaveyourpassword.ui.RecyclerItemClickListener
+import ru.vadimbliashuk.secondsaveyourpassword.ui.SwipeToDeleteCallback
 
-class AllLoginsActivity : AppCompatActivity(), RecyclerItemClickListener.OnRecyclerClickListener {
+class AllLoginsActivity : AppCompatActivity(),
+    RecyclerItemClickListener.OnRecyclerClickListener {
 
     private lateinit var vm: UserViewModel
 
