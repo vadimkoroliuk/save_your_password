@@ -2,6 +2,7 @@ package ru.vadimbliashuk.secondsaveyourpassword.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -68,11 +69,7 @@ class AllLoginsActivity : AppCompatActivity(),
     }
 
     override fun onItemClick(view: View, position: Int) {
-        Toast.makeText(
-            this,
-            "short",
-            Toast.LENGTH_LONG
-        ).show()
+        Log.d("inItemClick", "ShortClick")
     }
 
     override fun onItemLongClick(view: View, position: Int) {
