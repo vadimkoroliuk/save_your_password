@@ -5,8 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import ru.vadimbliashuk.secondsaveyourpassword.data.UserDatabase
-import ru.vadimbliashuk.secondsaveyourpassword.data.UserRepository
 import ru.vadimbliashuk.secondsaveyourpassword.models.UserEntity
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
