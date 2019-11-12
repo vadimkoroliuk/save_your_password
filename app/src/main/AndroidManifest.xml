@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.SettingActivity"></activity>
+        <activity android:name=".activities.SettingsActivity"
+            android:label="Settings"
+            android:parentActivityName=".activities.AllLoginsActivity"
+            android:theme="@style/AppTheme.YesActionBar"
+            >
+        </activity>
         <activity
             android:name=".activities.AddNewLogin"
             android:label="Add New Login"

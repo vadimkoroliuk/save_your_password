@@ -92,7 +92,7 @@ class AllLoginsActivity : AppCompatActivity(),
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.menu_setting -> {
-                val intent = Intent(this, SettingActivity::class.java)
+                val intent = Intent(this, SettingsActivity::class.java)
                 startActivity(intent)
             }
         }
