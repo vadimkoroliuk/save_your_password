@@ -27,27 +27,29 @@ class MainActivity : AppCompatActivity() {
             setContentView(R.layout.activity_main)
 
             val phoneNumber = sharedPreferences.getString(PHONE_NUMBER, EMPTY)
-            var password = 0
+            var password = ""
 
             tv_clear.setOnClickListener {
                 iv_1.visibility = View.INVISIBLE
                 iv_2.visibility = View.INVISIBLE
                 iv_3.visibility = View.INVISIBLE
                 iv_4.visibility = View.INVISIBLE
-                password = 0
+                password = ""
             }
 
             val listener = View.OnClickListener { v ->
                 val b = v as Button
-                password = password * 10 + b.text.toString().toInt()
+                password += b.text.toString()
 
-                when (password.toString().length) {
+
+
+                when (password.length) {
                     1 -> iv_1.visibility = View.VISIBLE
                     2 -> iv_2.visibility = View.VISIBLE
                     3 -> iv_3.visibility = View.VISIBLE
                     4 -> {
                         iv_4.visibility = View.VISIBLE
-                        if (password.toString() == phoneNumber) {
+                        if (password == phoneNumber) {
                             val intent = Intent(this, AllLoginsActivity::class.java)
                             startActivity(intent)
                             finish()
@@ -57,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                             iv_2.visibility = View.INVISIBLE
                             iv_3.visibility = View.INVISIBLE
                             iv_4.visibility = View.INVISIBLE
-                            password = 0
+                            password = ""
                         }
                     }
                 }
