@@ -8,6 +8,6 @@ class ChangePinCode : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_pin_code)
+        setContentView(R.layout.activity_change_pin)
     }
 }
