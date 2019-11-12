@@ -17,6 +17,7 @@
         android:inputType="numberPassword"
         android:maxLength="4"
         android:singleLine="true"
+        android:textColor="@color/primary_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,12 +33,13 @@
         android:inputType="numberPassword"
         android:maxLength="4"
         android:singleLine="true"
+        android:textColor="@color/primary_text"
         app:layout_constraintEnd_toEndOf="@+id/et_create_password"
         app:layout_constraintStart_toStartOf="@+id/et_create_password"
         app:layout_constraintTop_toBottomOf="@+id/et_create_password" />
 
     <Button
-        android:id="@+id/button_add_pw"
+        android:id="@+id/button_save_pw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
             //If the user details are not saved previously then display the form
             setContentView(R.layout.activity_add_pin_code)
 
-            button_add_pw.setOnClickListener {
+            button_save_pw.setOnClickListener {
                 //If the user has left any fields empty, show Toast message
                 if (et_create_password.text.toString() == EMPTY
                     || et_create_password_2.text.toString() == EMPTY

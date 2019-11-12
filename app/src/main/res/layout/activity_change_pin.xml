@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/et_change_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="numberPassword"
+        android:maxLength="4"
+        android:singleLine="true"
+        android:textColor="@color/primary_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_change_password_2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Confirm Password"
+        android:inputType="numberPassword"
+        android:maxLength="4"
+        android:singleLine="true"
+        android:textColor="@color/primary_text"
+        app:layout_constraintEnd_toEndOf="@+id/et_change_password"
+        app:layout_constraintStart_toStartOf="@+id/et_change_password"
+        app:layout_constraintTop_toBottomOf="@+id/et_change_password" />
+
+    <Button
+        android:id="@+id/button_change_pw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/button_app"
+        android:text="Change"
+        android:textColor="@color/primary_text"
+        app:layout_constraintEnd_toEndOf="@+id/et_change_password_2"
+        app:layout_constraintStart_toStartOf="@+id/et_change_password_2"
+        app:layout_constraintTop_toBottomOf="@+id/et_change_password_2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
