@@ -9,8 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.ChangePinCode"
+            android:label="Change Pin code"
+            android:parentActivityName=".activities.SettingsActivity"
+            android:theme="@style/AppTheme.YesActionBar"
+            >
+        </activity>
         <activity android:name=".activities.SettingsActivity"
-            android:label="Settings"
+            android:label="@string/Settings"
             android:parentActivityName=".activities.AllLoginsActivity"
             android:theme="@style/AppTheme.YesActionBar"
             >
