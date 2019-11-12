@@ -3,6 +3,8 @@ package ru.vadimbliashuk.secondsaveyourpassword.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -50,7 +52,7 @@ class AllLoginsActivity : AppCompatActivity(),
 
         val swipeHandler = object : SwipeToDeleteCallback(this) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-             //   val adapter = recyclerView.adapter as UserListAdapter
+                //   val adapter = recyclerView.adapter as UserListAdapter
 
                 val user: UserEntity = adapter.getUserAtPosition(viewHolder.adapterPosition)
                 vm.delete(user)
@@ -79,6 +81,22 @@ class AllLoginsActivity : AppCompatActivity(),
             Toast.LENGTH_LONG
         ).show()
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        return super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.menu_setting -> {
+                val intent = Intent(this, SettingActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
 

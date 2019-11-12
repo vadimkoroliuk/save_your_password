@@ -9,13 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.AddNewLogin"
+        <activity android:name=".activities.SettingActivity"></activity>
+        <activity
+            android:name=".activities.AddNewLogin"
             android:label="Add New Login"
-            android:theme="@style/AppTheme.YesActionBar"
-            android:parentActivityName=".activities.AllLoginsActivity"></activity>
+            android:parentActivityName=".activities.AllLoginsActivity"
+            android:theme="@style/AppTheme.YesActionBar" />
         <activity
             android:name=".activities.AllLoginsActivity"
-            android:label="All Items"/>
+            android:label="All Items" />
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
