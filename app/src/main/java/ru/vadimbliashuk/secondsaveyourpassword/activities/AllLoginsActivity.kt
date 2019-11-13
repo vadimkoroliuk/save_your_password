@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_all_logins.*
+import kotlinx.android.synthetic.main.recycler_view_item.view.*
 import ru.vadimbliashuk.secondsaveyourpassword.R
 import ru.vadimbliashuk.secondsaveyourpassword.adapter.UserListAdapter
 import ru.vadimbliashuk.secondsaveyourpassword.data.UserViewModel
@@ -77,7 +78,7 @@ class AllLoginsActivity : AppCompatActivity(),
     override fun onItemLongClick(view: View, position: Int) {
         Toast.makeText(
             this,
-            "long",
+            view.tv_website_rv_item.text.toString(),
             Toast.LENGTH_LONG
         ).show()
 
