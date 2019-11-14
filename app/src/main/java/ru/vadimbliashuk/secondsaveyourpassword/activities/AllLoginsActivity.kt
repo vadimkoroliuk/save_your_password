@@ -81,11 +81,6 @@ class AllLoginsActivity : AppCompatActivity(),
     }
 
     override fun onItemLongClick(view: View, position: Int) {
-        Toast.makeText(
-            this,
-            view.tv_website_rv_item.text.toString(),
-            Toast.LENGTH_LONG
-        ).show()
 
         val mDialogView = LayoutInflater.from(this).inflate(R.layout.activity_update, null)
         val mBuilder = AlertDialog.Builder(this)
