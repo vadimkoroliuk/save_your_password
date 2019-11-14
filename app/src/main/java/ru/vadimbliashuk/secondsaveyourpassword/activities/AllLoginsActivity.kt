@@ -3,10 +3,12 @@ package ru.vadimbliashuk.secondsaveyourpassword.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_all_logins.*
+import kotlinx.android.synthetic.main.activity_update.*
 import kotlinx.android.synthetic.main.recycler_view_item.view.*
 import ru.vadimbliashuk.secondsaveyourpassword.R
 import ru.vadimbliashuk.secondsaveyourpassword.adapter.UserListAdapter
@@ -26,6 +29,8 @@ class AllLoginsActivity : AppCompatActivity(),
     RecyclerItemClickListener.OnRecyclerClickListener {
 
     private lateinit var vm: UserViewModel
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: UserListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,8 +44,8 @@ class AllLoginsActivity : AppCompatActivity(),
 
         vm = ViewModelProviders.of(this).get(UserViewModel::class.java)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
-        val adapter = UserListAdapter(this)
+        recyclerView = findViewById(R.id.recycler_view)
+        adapter = UserListAdapter(this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.addOnItemTouchListener(
@@ -81,6 +86,28 @@ class AllLoginsActivity : AppCompatActivity(),
             view.tv_website_rv_item.text.toString(),
             Toast.LENGTH_LONG
         ).show()
+
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.activity_update, null)
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialogView)
+            .setTitle("Update Form")
+        val mAlertDialog = mBuilder.show()
+
+        val user = adapter.getUserAtPosition(position)
+        mAlertDialog.tv_update_website.text = user.website
+        mAlertDialog.et_update_login.setText(user.login)
+        mAlertDialog.et_update_pw_act.setText(user.password)
+
+
+        mAlertDialog.btn_update.setOnClickListener {
+
+            mAlertDialog.dismiss()
+
+                user.login = mAlertDialog.et_update_login.text.toString()
+                user.password = mAlertDialog.et_update_pw_act.text.toString()
+
+            vm.update(user)
+        }
 
     }
 

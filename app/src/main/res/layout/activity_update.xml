@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.UpdateActivity">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/tv_update_website"
@@ -13,7 +12,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:textSize="18sp"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -42,5 +42,18 @@
         app:layout_constraintEnd_toEndOf="@+id/et_update_login"
         app:layout_constraintStart_toStartOf="@+id/et_update_login"
         app:layout_constraintTop_toBottomOf="@+id/et_update_login" />
+
+    <Button
+        android:id="@+id/btn_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_app"
+        android:text="@string/update"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/et_update_pw_act"
+        app:layout_constraintStart_toStartOf="@+id/et_update_pw_act"
+        app:layout_constraintTop_toBottomOf="@+id/et_update_pw_act" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
