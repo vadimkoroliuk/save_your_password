@@ -1,7 +1,6 @@
 package ru.vadimbliashuk.secondsaveyourpassword.data
 
 import androidx.lifecycle.LiveData
-import ru.vadimbliashuk.secondsaveyourpassword.data.UserDao
 import ru.vadimbliashuk.secondsaveyourpassword.models.UserEntity
 
 class UserRepository(private val userDao: UserDao) {

@@ -18,7 +18,7 @@ class RecyclerItemClickListener(
     private val TAG = "RecyclerItemClickListen"
 
     interface OnRecyclerClickListener {
-//        fun onItemClick(view: View, position: Int)
+        //        fun onItemClick(view: View, position: Int)
         fun onItemLongClick(view: View, position: Int)
     }
 

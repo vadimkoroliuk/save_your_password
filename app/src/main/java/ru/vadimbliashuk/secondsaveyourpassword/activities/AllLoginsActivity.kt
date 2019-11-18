@@ -2,12 +2,10 @@ package ru.vadimbliashuk.secondsaveyourpassword.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -17,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_all_logins.*
 import kotlinx.android.synthetic.main.activity_update.*
-import kotlinx.android.synthetic.main.recycler_view_item.view.*
 import ru.vadimbliashuk.secondsaveyourpassword.R
 import ru.vadimbliashuk.secondsaveyourpassword.adapter.UserListAdapter
 import ru.vadimbliashuk.secondsaveyourpassword.data.UserViewModel
@@ -98,8 +95,8 @@ class AllLoginsActivity : AppCompatActivity(),
 
             mAlertDialog.dismiss()
 
-                user.login = mAlertDialog.et_update_login.text.toString()
-                user.password = mAlertDialog.et_update_pw_act.text.toString()
+            user.login = mAlertDialog.et_update_login.text.toString()
+            user.password = mAlertDialog.et_update_pw_act.text.toString()
 
             vm.update(user)
         }
