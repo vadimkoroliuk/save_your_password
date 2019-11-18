@@ -2,15 +2,15 @@ package ru.vadimbliashuk.secondsaveyourpassword.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import ru.vadimbliashuk.secondsaveyourpassword.R
-import ru.vadimbliashuk.secondsaveyourpassword.data.UserViewModel
 import ru.vadimbliashuk.secondsaveyourpassword.models.UserEntity
 
 
@@ -25,7 +25,8 @@ class UserListAdapter internal constructor(
     inner class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val userItemWebsite: TextView = itemView.findViewById(R.id.tv_website_rv_item)
         val userItemLogin: TextView = itemView.findViewById(R.id.tv_login_rv_item)
-        val userItemPassword: TextView = itemView.findViewById(R.id.tv_password_rv_item)
+        val userItemPassword: EditText = itemView.findViewById(R.id.tv_password_rv_item)
+        val userItemImage: ImageView = itemView.findViewById(R.id.iv_show_password)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
@@ -38,7 +39,10 @@ class UserListAdapter internal constructor(
         val current = users[position]
         holder.userItemWebsite.text = current.website.toUpperCase()
         holder.userItemLogin.text = current.login
-        holder.userItemPassword.text = current.password
+        holder.userItemPassword.setText(current.password) //= current.password
+        holder.userItemImage.setOnClickListener {
+            holder.userItemPassword.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+        }
 
     }
 
@@ -49,7 +53,7 @@ class UserListAdapter internal constructor(
 
     override fun getItemCount() = users.size
 
-    fun getUserAtPosition(position: Int): UserEntity{
+    fun getUserAtPosition(position: Int): UserEntity {
         return users[position]
     }
 }

@@ -9,16 +9,32 @@ apply plugin: 'kotlin-kapt'
 //apply plugin: 'kotlinx-serialization'
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('E:\\Save Login\\saveloginkeystore.jks')
+            storePassword 'asd!!3lN*'
+            keyAlias = 'saveloginkey'
+            keyPassword 'kraz!!22'
+        }
+        release {
+            storeFile file('E:\\Save Login\\saveloginkeystore.jks')
+            storePassword 'asd!!3lN*'
+            keyAlias = 'saveloginkey'
+            keyPassword 'kraz!!22'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "ru.vadimbliashuk.secondsaveyourpassword"
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "2.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
+
+
 
     buildTypes {
         release {

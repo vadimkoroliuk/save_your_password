@@ -76,9 +76,9 @@ class AllLoginsActivity : AppCompatActivity(),
         })
     }
 
-    override fun onItemClick(view: View, position: Int) {
-        Log.d("inItemClick", "ShortClick")
-    }
+//    override fun onItemClick(view: View, position: Int) {
+//        Log.d("inItemClick", "ShortClick")
+//    }
 
     override fun onItemLongClick(view: View, position: Int) {
 
