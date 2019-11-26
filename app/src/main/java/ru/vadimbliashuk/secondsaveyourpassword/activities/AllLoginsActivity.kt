@@ -116,7 +116,7 @@ class AllLoginsActivity : AppCompatActivity(),
                 startActivity(intent)
             }
         }
-        return super.onOptionsItemSelected(item)
+        return super.onOptionsItemSelected(item!!)
     }
 }
 
