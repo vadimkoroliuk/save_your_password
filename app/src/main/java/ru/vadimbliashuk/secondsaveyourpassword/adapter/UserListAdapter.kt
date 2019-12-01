@@ -2,7 +2,6 @@ package ru.vadimbliashuk.secondsaveyourpassword.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +25,6 @@ class UserListAdapter internal constructor(
         val userItemWebsite: TextView = itemView.findViewById(R.id.tv_website_rv_item)
         val userItemLogin: TextView = itemView.findViewById(R.id.tv_login_rv_item)
         val userItemPassword: EditText = itemView.findViewById(R.id.tv_password_rv_item)
-        val userItemImage: ImageView = itemView.findViewById(R.id.iv_show_password)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
@@ -40,10 +38,6 @@ class UserListAdapter internal constructor(
         holder.userItemWebsite.text = current.website.toUpperCase()
         holder.userItemLogin.text = current.login
         holder.userItemPassword.setText(current.password) //= current.password
-        holder.userItemImage.setOnClickListener {
-            holder.userItemPassword.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-        }
-
     }
 
     internal fun setUsers(users: List<UserEntity>) {

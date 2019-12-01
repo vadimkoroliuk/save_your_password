@@ -92,15 +92,11 @@ class AllLoginsActivity : AppCompatActivity(),
 
 
         mAlertDialog.btn_update.setOnClickListener {
-
             mAlertDialog.dismiss()
-
             user.login = mAlertDialog.et_update_login.text.toString()
             user.password = mAlertDialog.et_update_pw_act.text.toString()
-
             vm.update(user)
         }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
