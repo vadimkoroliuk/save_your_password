@@ -1,4 +1,4 @@
-package ru.vadimbliashuk.secondsaveyourpassword.activities
+package ru.vadimbliashuk.secondsaveyourpassword.ui.activities
 
 import android.content.Intent
 import android.os.Bundle

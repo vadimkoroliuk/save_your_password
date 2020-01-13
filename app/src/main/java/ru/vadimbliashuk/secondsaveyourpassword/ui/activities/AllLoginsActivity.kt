@@ -1,5 +1,6 @@
-package ru.vadimbliashuk.secondsaveyourpassword.activities
+package ru.vadimbliashuk.secondsaveyourpassword.ui.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
@@ -16,8 +17,8 @@ import ru.vadimbliashuk.secondsaveyourpassword.R
 import ru.vadimbliashuk.secondsaveyourpassword.adapter.UserListAdapter
 import ru.vadimbliashuk.secondsaveyourpassword.data.UserViewModel
 import ru.vadimbliashuk.secondsaveyourpassword.models.UserEntity
-import ru.vadimbliashuk.secondsaveyourpassword.ui.RecyclerItemClickListener
-import ru.vadimbliashuk.secondsaveyourpassword.ui.SwipeToDeleteCallback
+import ru.vadimbliashuk.secondsaveyourpassword.adapter.rv_listener.RecyclerItemClickListener
+import ru.vadimbliashuk.secondsaveyourpassword.adapter.rv_listener.SwipeToDeleteCallback
 
 class AllLoginsActivity : AppCompatActivity(),
     RecyclerItemClickListener.OnRecyclerClickListener {
@@ -79,6 +80,7 @@ class AllLoginsActivity : AppCompatActivity(),
 //        Log.d("inItemClick", "ShortClick")
 //    }
 
+    @SuppressLint("InflateParams")
     override fun onItemLongClick(view: View, position: Int) {
 
         val mDialogView = LayoutInflater.from(this).inflate(R.layout.activity_update, null)

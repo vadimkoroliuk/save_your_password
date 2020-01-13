@@ -1,4 +1,4 @@
-package ru.vadimbliashuk.secondsaveyourpassword.activities
+package ru.vadimbliashuk.secondsaveyourpassword.ui.activities
 
 import android.content.Context
 import android.content.Intent
@@ -40,8 +40,6 @@ class MainActivity : AppCompatActivity() {
             val listener = View.OnClickListener { v ->
                 val b = v as Button
                 password += b.text.toString()
-
-
 
                 when (password.length) {
                     1 -> iv_1.visibility = View.VISIBLE
@@ -97,7 +95,6 @@ class MainActivity : AppCompatActivity() {
                     //If all fields are filled then fetch the data and
                     // save the data in Shared Preferences
                     val editor = sharedPreferences.edit()
-
                     editor.putString(PHONE_NUMBER, et_create_password.text.toString())
                     editor.apply()
 

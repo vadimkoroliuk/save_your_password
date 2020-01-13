@@ -1,4 +1,4 @@
-package ru.vadimbliashuk.secondsaveyourpassword.ui
+package ru.vadimbliashuk.secondsaveyourpassword.adapter.rv_listener
 
 import android.content.Context
 import android.util.Log

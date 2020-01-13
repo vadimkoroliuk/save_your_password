@@ -10,26 +10,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.ChangePinCode"
+            android:name=".ui.activities.ChangePinCode"
             android:label="Change Pin code"
-            android:parentActivityName=".activities.SettingsActivity"
+            android:parentActivityName=".ui.activities.SettingsActivity"
             android:theme="@style/AppTheme.YesActionBar" />
         <activity
-            android:name=".activities.SettingsActivity"
+            android:name=".ui.activities.SettingsActivity"
             android:label="@string/Settings"
-            android:parentActivityName=".activities.AllLoginsActivity"
+            android:parentActivityName=".ui.activities.AllLoginsActivity"
             android:theme="@style/AppTheme.YesActionBar" />
         <activity
-            android:name=".activities.AddNewLogin"
+            android:name=".ui.activities.AddNewLogin"
             android:label="Add New Login"
-            android:parentActivityName=".activities.AllLoginsActivity"
+            android:parentActivityName=".ui.activities.AllLoginsActivity"
             android:theme="@style/AppTheme.YesActionBar"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".activities.AllLoginsActivity"
+            android:name=".ui.activities.AllLoginsActivity"
             android:label="All Items" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
