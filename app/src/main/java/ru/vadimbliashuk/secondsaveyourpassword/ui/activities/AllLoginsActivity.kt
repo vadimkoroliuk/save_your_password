@@ -1,106 +1,37 @@
 package ru.vadimbliashuk.secondsaveyourpassword.ui.activities
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.view.*
-import androidx.appcompat.app.AlertDialog
+import android.view.Menu
+import android.view.MenuItem
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_all_logins.*
-import kotlinx.android.synthetic.main.activity_update.*
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import ru.vadimbliashuk.secondsaveyourpassword.R
-import ru.vadimbliashuk.secondsaveyourpassword.adapter.UserListAdapter
-import ru.vadimbliashuk.secondsaveyourpassword.data.UserViewModel
-import ru.vadimbliashuk.secondsaveyourpassword.models.UserEntity
-import ru.vadimbliashuk.secondsaveyourpassword.adapter.rv_listener.RecyclerItemClickListener
-import ru.vadimbliashuk.secondsaveyourpassword.adapter.rv_listener.SwipeToDeleteCallback
+import ru.vadimbliashuk.secondsaveyourpassword.ui.fragment.list_of_items.ListOfItemsFragment
 
-class AllLoginsActivity : AppCompatActivity(),
-    RecyclerItemClickListener.OnRecyclerClickListener {
-
-    private lateinit var vm: UserViewModel
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: UserListAdapter
+class AllLoginsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_logins)
-        setSupportActionBar(toolbar)
+//        setSupportActionBar(toolbar)
+//        toolbar.title = getString(R.string.toolbar_title_list)
+
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_SECURE,
             WindowManager.LayoutParams.FLAG_SECURE
         )
 
-        fab.setOnClickListener {
-            val intent = Intent(this, AddNewLogin::class.java)
-            startActivity(intent)
-        }
-
-        vm = ViewModelProviders.of(this).get(UserViewModel::class.java)
-
-        recyclerView = findViewById(R.id.recycler_view)
-        adapter = UserListAdapter(this)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.addOnItemTouchListener(
-            RecyclerItemClickListener(
-                this,
-                recyclerView,
-                this
-            )
-        )
-
-        val swipeHandler = object : SwipeToDeleteCallback(this) {
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                //   val adapter = recyclerView.adapter as UserListAdapter
-
-                val user: UserEntity = adapter.getUserAtPosition(viewHolder.adapterPosition)
-                vm.delete(user)
-
-            }
-        }
-        val itemTouchHelper = ItemTouchHelper(swipeHandler)
-        itemTouchHelper.attachToRecyclerView(recyclerView)
-
-
-        vm.allUsers.observe(this, Observer { users ->
-            users.let {
-                adapter.setUsers(it)
-            }
-        })
+        replaceFragment(ListOfItemsFragment())
     }
 
-//    override fun onItemClick(view: View, position: Int) {
-//        Log.d("inItemClick", "ShortClick")
-//    }
-
-    @SuppressLint("InflateParams")
-    override fun onItemLongClick(view: View, position: Int) {
-
-        val mDialogView = LayoutInflater.from(this).inflate(R.layout.activity_update, null)
-        val mBuilder = AlertDialog.Builder(this)
-            .setView(mDialogView)
-            .setTitle("Update Form")
-        val mAlertDialog = mBuilder.show()
-
-        val user = adapter.getUserAtPosition(position)
-        mAlertDialog.tv_update_website.text = user.website
-        mAlertDialog.et_update_login.setText(user.login)
-        mAlertDialog.et_update_pw_act.setText(user.password)
-
-
-        mAlertDialog.btn_update.setOnClickListener {
-            mAlertDialog.dismiss()
-            user.login = mAlertDialog.et_update_login.text.toString()
-            user.password = mAlertDialog.et_update_pw_act.text.toString()
-            vm.update(user)
-        }
+    private fun replaceFragment(fragment: Fragment) {
+        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, fragment)
+        transaction.commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

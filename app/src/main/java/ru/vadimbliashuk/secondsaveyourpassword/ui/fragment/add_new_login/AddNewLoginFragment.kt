@@ -1,12 +1,11 @@
 package ru.vadimbliashuk.secondsaveyourpassword.ui.fragment.add_new_login
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import ru.vadimbliashuk.secondsaveyourpassword.R
 
 class AddNewLoginFragment : Fragment() {
