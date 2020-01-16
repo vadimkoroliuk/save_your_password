@@ -8,7 +8,18 @@ import androidx.fragment.app.FragmentTransaction
 import ru.vadimbliashuk.secondsaveyourpassword.R
 import ru.vadimbliashuk.secondsaveyourpassword.ui.fragment.list_of_items.ListOfItemsFragment
 
+
 class AllLoginsActivity : AppCompatActivity() {
+
+    private var onBackPressedListener: OnBackPressedListener? = null
+
+    interface OnBackPressedListener {
+        fun doBack()
+    }
+
+    fun setOnBackPressedListener(onBackPressedListener: OnBackPressedListener?) {
+        this.onBackPressedListener = onBackPressedListener
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +35,22 @@ class AllLoginsActivity : AppCompatActivity() {
     private fun replaceFragment(fragment: Fragment) {
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, fragment)
+        transaction.addToBackStack(null)
         transaction.commit()
     }
+
+    override fun onDestroy() {
+        onBackPressedListener = null
+        super.onDestroy()
+    }
+
+    override fun onBackPressed() {
+        if (onBackPressedListener != null) {
+            onBackPressedListener!!.doBack()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
 }
 

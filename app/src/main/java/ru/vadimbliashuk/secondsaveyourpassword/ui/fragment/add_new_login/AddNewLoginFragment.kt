@@ -13,16 +13,18 @@ import ru.vadimbliashuk.secondsaveyourpassword.R
 import ru.vadimbliashuk.secondsaveyourpassword.data.UserViewModel
 import ru.vadimbliashuk.secondsaveyourpassword.extention.hideKeyboard
 import ru.vadimbliashuk.secondsaveyourpassword.models.UserEntity
+import ru.vadimbliashuk.secondsaveyourpassword.ui.activities.AllLoginsActivity
 import ru.vadimbliashuk.secondsaveyourpassword.ui.fragment.list_of_items.ListOfItemsFragment
 
-class AddNewLoginFragment : Fragment() {
+
+class AddNewLoginFragment : Fragment(), AllLoginsActivity.OnBackPressedListener {
+
 
     companion object {
         fun newInstance() = AddNewLoginFragment()
     }
 
     private lateinit var viewModel: AddNewLoginViewModel
-
     private lateinit var vm: UserViewModel
 
     override fun onCreateView(
@@ -36,14 +38,12 @@ class AddNewLoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         toolbar_new_login.title = "Add new login"
-        // need to set the icon here to have a navigation icon. You can simple create an vector image by "Vector Asset" and using here
         toolbar_new_login.setNavigationIcon(R.drawable.ic_back)
-        // do something when click navigation
         toolbar_new_login.setNavigationOnClickListener {
-
             replaceFragment(ListOfItemsFragment())
-
         }
+
+        (activity as AllLoginsActivity?)!!.setOnBackPressedListener(this)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -55,7 +55,6 @@ class AddNewLoginFragment : Fragment() {
         btn_save.setOnClickListener {
 
             hideKeyboard()
-
 
             when {
                 tiet_website.text.toString().isEmpty() -> tiet_website.error =
@@ -88,7 +87,7 @@ class AddNewLoginFragment : Fragment() {
         transaction.commit()
     }
 
-
-
-
+    override fun doBack() {
+        replaceFragment(ListOfItemsFragment())
+    }
 }
