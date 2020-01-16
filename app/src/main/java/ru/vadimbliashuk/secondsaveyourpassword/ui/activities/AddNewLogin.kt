@@ -17,7 +17,6 @@ class AddNewLogin : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_new_login)
 
-
         vm = ViewModelProviders.of(this).get(UserViewModel::class.java)
 
         btn_save.setOnClickListener {
@@ -29,13 +28,11 @@ class AddNewLogin : AppCompatActivity() {
                 tiet_password.text.toString().isEmpty() -> tiet_password.error =
                     "Please insert Password"
                 else -> {
-
                     Toast.makeText(
                         this@AddNewLogin,
                         "Record succeed!",
                         Toast.LENGTH_LONG
                     ).show()
-
 
                     val user = UserEntity(
                         tiet_website.text.toString(),

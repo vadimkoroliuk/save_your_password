@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -22,14 +23,13 @@ import ru.vadimbliashuk.secondsaveyourpassword.adapter.rv_listener.RecyclerItemC
 import ru.vadimbliashuk.secondsaveyourpassword.adapter.rv_listener.SwipeToDeleteCallback
 import ru.vadimbliashuk.secondsaveyourpassword.data.UserViewModel
 import ru.vadimbliashuk.secondsaveyourpassword.models.UserEntity
-import ru.vadimbliashuk.secondsaveyourpassword.ui.activities.AddNewLogin
 import ru.vadimbliashuk.secondsaveyourpassword.ui.activities.SettingsActivity
+import ru.vadimbliashuk.secondsaveyourpassword.ui.fragment.add_new_login.AddNewLoginFragment
 
 class ListOfItemsFragment : Fragment(),
     RecyclerItemClickListener.OnRecyclerClickListener {
 
     private lateinit var vm: UserViewModel
-    //    private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: UserListAdapter
 
     companion object {
@@ -49,11 +49,6 @@ class ListOfItemsFragment : Fragment(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // need to set the icon here to have a navigation icon. You can simple create an vector image by "Vector Asset" and using here
-        // toolbar.setNavigationIcon(R.drawable.ic_back)
-        // toolbar.setNavigationOnClickListener {
-        // do something when click navigation
-        // }
         toolbar.title = "Items"
         toolbar.inflateMenu(R.menu.menu_main)
         toolbar.setOnMenuItemClickListener {
@@ -65,10 +60,6 @@ class ListOfItemsFragment : Fragment(),
 
                     true
                 }
-//                R.id.action_update -> {
-//                    // do something
-//                    true
-//                }
                 else -> {
                     super.onOptionsItemSelected(it)
                 }
@@ -79,19 +70,14 @@ class ListOfItemsFragment : Fragment(),
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-
         viewModel = ViewModelProviders.of(this).get(ListOfItemsViewModel::class.java)
 
-
         fab.setOnClickListener {
-            val intent = Intent(activity, AddNewLogin::class.java)
-            startActivity(intent)
+            replaceFragment(AddNewLoginFragment())
         }
 
         vm = ViewModelProviders.of(this).get(UserViewModel::class.java)
 
-//        recyclerView = findViewById(R.id.recycler_view)
-//        recyclerView = fragmentManager.findFragmentById(R.id.recycler_view)
         adapter = UserListAdapter(context!!)
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(context!!)
@@ -106,26 +92,25 @@ class ListOfItemsFragment : Fragment(),
         val swipeHandler = object : SwipeToDeleteCallback(context!!) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 //   val adapter = recyclerView.adapter as UserListAdapter
-
                 val user: UserEntity = adapter.getUserAtPosition(viewHolder.adapterPosition)
                 vm.delete(user)
-
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeHandler)
         itemTouchHelper.attachToRecyclerView(recycler_view)
-
 
         vm.allUsers.observe(this, Observer { users ->
             users.let {
                 adapter.setUsers(it)
             }
         })
-
     }
-//    override fun onItemClick(view: View, position: Int) {
-//        Log.d("inItemClick", "ShortClick")
-//    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
+        transaction.replace(R.id.fragment_container, fragment)
+        transaction.commit()
+    }
 
     @SuppressLint("InflateParams")
     override fun onItemLongClick(view: View, position: Int) {
