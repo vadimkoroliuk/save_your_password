@@ -23,11 +23,13 @@ import ru.vadimbliashuk.secondsaveyourpassword.adapter.rv_listener.RecyclerItemC
 import ru.vadimbliashuk.secondsaveyourpassword.adapter.rv_listener.SwipeToDeleteCallback
 import ru.vadimbliashuk.secondsaveyourpassword.data.UserViewModel
 import ru.vadimbliashuk.secondsaveyourpassword.models.UserEntity
+import ru.vadimbliashuk.secondsaveyourpassword.ui.activities.AllLoginsActivity
 import ru.vadimbliashuk.secondsaveyourpassword.ui.activities.SettingsActivity
 import ru.vadimbliashuk.secondsaveyourpassword.ui.fragment.add_new_login.AddNewLoginFragment
 
 class ListOfItemsFragment : Fragment(),
-    RecyclerItemClickListener.OnRecyclerClickListener {
+    RecyclerItemClickListener.OnRecyclerClickListener,
+    AllLoginsActivity.OnBackPressedListener {
 
     private lateinit var vm: UserViewModel
     private lateinit var adapter: UserListAdapter
@@ -54,10 +56,8 @@ class ListOfItemsFragment : Fragment(),
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.menu_setting -> {
-                    // do something
                     val intent = Intent(activity, SettingsActivity::class.java)
                     startActivity(intent)
-
                     true
                 }
                 else -> {
@@ -65,6 +65,8 @@ class ListOfItemsFragment : Fragment(),
                 }
             }
         }
+
+        (activity as AllLoginsActivity?)!!.setOnBackPressedListener(this)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -133,5 +135,9 @@ class ListOfItemsFragment : Fragment(),
             user.password = mAlertDialog.et_update_pw_act.text.toString()
             vm.update(user)
         }
+    }
+
+    override fun doBack() {
+        activity!!.finish()
     }
 }
