@@ -12,7 +12,7 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting)
 
-        tv_settings_update_pin.setOnClickListener {
+        change_pin_layout.setOnClickListener {
             val intent = Intent(this, ChangePinCode::class.java)
             startActivity(intent)
         }

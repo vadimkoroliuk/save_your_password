@@ -21,4 +21,6 @@
     <string name="Settings">Settings</string>
     <string name="update">Update</string>
     <string name="toolbar_title_list">Items</string>
+    <string name="change_access_code">Change access code</string>
+    <string name="next">next</string>
 </resources>

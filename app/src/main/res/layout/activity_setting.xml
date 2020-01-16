@@ -1,45 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.activities.SettingsActivity">
 
-    <TextView
-        android:id="@+id/tv_settings_update_pin"
-        android:layout_width="0dp"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/change_pin_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:padding="8dp"
-        android:text="Change Pin code"
-        android:textColor="@color/primary_text"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/textView3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_settings_update_pin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_weight="90"
+            android:text="@string/change_access_code"
+            android:textAllCaps="false"
+            android:textColor="@color/secondary_text"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_weight="10"
+            android:contentDescription="@string/next"
+            android:src="@drawable/ic_navigate_next_black_24dp"
+            android:textColor="@color/primary_text"
+            android:textSize="24sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <View
         android:id="@+id/divider"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/divider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_settings_update_pin" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:padding="8dp"
-        android:text=">"
-        android:textColor="@color/primary_text"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="?android:attr/listDivider"
+        android:backgroundTint="@color/primary_text" />
+</androidx.appcompat.widget.LinearLayoutCompat>
