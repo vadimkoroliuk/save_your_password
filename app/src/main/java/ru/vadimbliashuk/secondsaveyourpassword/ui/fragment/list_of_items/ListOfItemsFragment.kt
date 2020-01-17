@@ -22,6 +22,7 @@ import ru.vadimbliashuk.secondsaveyourpassword.adapter.UserListAdapter
 import ru.vadimbliashuk.secondsaveyourpassword.adapter.rv_listener.RecyclerItemClickListener
 import ru.vadimbliashuk.secondsaveyourpassword.adapter.rv_listener.SwipeToDeleteCallback
 import ru.vadimbliashuk.secondsaveyourpassword.data.UserViewModel
+import ru.vadimbliashuk.secondsaveyourpassword.extention.replaceFragment
 import ru.vadimbliashuk.secondsaveyourpassword.models.UserEntity
 import ru.vadimbliashuk.secondsaveyourpassword.ui.activities.AllLoginsActivity
 import ru.vadimbliashuk.secondsaveyourpassword.ui.activities.SettingsActivity
@@ -106,12 +107,6 @@ class ListOfItemsFragment : Fragment(),
                 adapter.setUsers(it)
             }
         })
-    }
-
-    private fun replaceFragment(fragment: Fragment) {
-        val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
-        transaction.replace(R.id.fragment_container, fragment)
-        transaction.commit()
     }
 
     @SuppressLint("InflateParams")

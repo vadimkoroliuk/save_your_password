@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.add_new_login_fragment.*
 import ru.vadimbliashuk.secondsaveyourpassword.R
 import ru.vadimbliashuk.secondsaveyourpassword.data.UserViewModel
 import ru.vadimbliashuk.secondsaveyourpassword.extention.hideKeyboard
+import ru.vadimbliashuk.secondsaveyourpassword.extention.replaceFragment
 import ru.vadimbliashuk.secondsaveyourpassword.models.UserEntity
 import ru.vadimbliashuk.secondsaveyourpassword.ui.activities.AllLoginsActivity
 import ru.vadimbliashuk.secondsaveyourpassword.ui.fragment.list_of_items.ListOfItemsFragment
@@ -81,11 +82,7 @@ class AddNewLoginFragment : Fragment(), AllLoginsActivity.OnBackPressedListener 
         }
     }
 
-    private fun replaceFragment(fragment: Fragment) {
-        val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
-        transaction.replace(R.id.fragment_container, fragment)
-        transaction.commit()
-    }
+
 
     override fun doBack() {
         replaceFragment(ListOfItemsFragment())
