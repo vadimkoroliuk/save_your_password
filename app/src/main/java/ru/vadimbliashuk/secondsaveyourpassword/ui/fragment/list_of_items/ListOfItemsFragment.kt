@@ -20,7 +20,6 @@ import ru.vadimbliashuk.secondsaveyourpassword.R
 import ru.vadimbliashuk.secondsaveyourpassword.adapter.UserListAdapter
 import ru.vadimbliashuk.secondsaveyourpassword.adapter.rv_listener.RecyclerItemClickListener
 import ru.vadimbliashuk.secondsaveyourpassword.adapter.rv_listener.SwipeToDeleteCallback
-import ru.vadimbliashuk.secondsaveyourpassword.data.UserViewModel
 import ru.vadimbliashuk.secondsaveyourpassword.extention.replaceFragment
 import ru.vadimbliashuk.secondsaveyourpassword.models.UserEntity
 import ru.vadimbliashuk.secondsaveyourpassword.ui.activities.AllLoginsActivity
@@ -31,15 +30,13 @@ class ListOfItemsFragment : Fragment(),
     RecyclerItemClickListener.OnRecyclerClickListener,
     AllLoginsActivity.OnBackPressedListener {
 
-    private lateinit var vm: UserViewModel
     private lateinit var adapter: UserListAdapter
+    private lateinit var viewModel: ListOfItemsViewModel
 
     companion object {
         fun newInstance() =
             ListOfItemsFragment()
     }
-
-    private lateinit var viewModel: ListOfItemsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -78,8 +75,6 @@ class ListOfItemsFragment : Fragment(),
             replaceFragment(AddNewLoginFragment())
         }
 
-        vm = ViewModelProviders.of(this).get(UserViewModel::class.java)
-
         adapter = UserListAdapter(context!!)
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(context!!)
@@ -95,13 +90,13 @@ class ListOfItemsFragment : Fragment(),
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 //   val adapter = recyclerView.adapter as UserListAdapter
                 val user: UserEntity = adapter.getUserAtPosition(viewHolder.adapterPosition)
-                vm.delete(user)
+                viewModel.delete(user)
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeHandler)
         itemTouchHelper.attachToRecyclerView(recycler_view)
 
-        vm.allUsers.observe(this, Observer { users ->
+        viewModel.allUsers.observe(this, Observer { users ->
             users.let {
                 adapter.setUsers(it)
             }
@@ -122,12 +117,11 @@ class ListOfItemsFragment : Fragment(),
         mAlertDialog.et_update_login.setText(user.login)
         mAlertDialog.et_update_pw_act.setText(user.password)
 
-
         mAlertDialog.btn_update.setOnClickListener {
             mAlertDialog.dismiss()
             user.login = mAlertDialog.et_update_login.text.toString()
             user.password = mAlertDialog.et_update_pw_act.text.toString()
-            vm.update(user)
+            viewModel.update(user)
         }
     }
 

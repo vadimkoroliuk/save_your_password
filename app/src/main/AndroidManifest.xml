@@ -20,14 +20,9 @@
             android:parentActivityName=".ui.activities.AllLoginsActivity"
             android:theme="@style/AppTheme.YesActionBar" />
         <activity
-            android:name=".ui.activities.AddNewLogin"
-            android:label="Add New Login"
-            android:parentActivityName=".ui.activities.AllLoginsActivity"
-            android:theme="@style/AppTheme.YesActionBar"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
             android:name=".ui.activities.AllLoginsActivity"
-            android:label="All Items" />
+            android:label="All Items"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.activities.MainActivity"
             android:screenOrientation="portrait">
