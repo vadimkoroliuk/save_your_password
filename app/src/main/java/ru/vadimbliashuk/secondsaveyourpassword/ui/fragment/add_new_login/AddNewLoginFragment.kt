@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.add_new_login_fragment.*
@@ -13,7 +12,6 @@ import ru.vadimbliashuk.secondsaveyourpassword.R
 import ru.vadimbliashuk.secondsaveyourpassword.data.UserViewModel
 import ru.vadimbliashuk.secondsaveyourpassword.extention.hideKeyboard
 import ru.vadimbliashuk.secondsaveyourpassword.extention.replaceFragment
-import ru.vadimbliashuk.secondsaveyourpassword.models.UserEntity
 import ru.vadimbliashuk.secondsaveyourpassword.ui.activities.AllLoginsActivity
 import ru.vadimbliashuk.secondsaveyourpassword.ui.fragment.list_of_items.ListOfItemsFragment
 
@@ -26,7 +24,6 @@ class AddNewLoginFragment : Fragment(), AllLoginsActivity.OnBackPressedListener 
     }
 
     private lateinit var viewModel: AddNewLoginViewModel
-    private lateinit var vm: UserViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,8 +48,6 @@ class AddNewLoginFragment : Fragment(), AllLoginsActivity.OnBackPressedListener 
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(AddNewLoginViewModel::class.java)
 
-        vm = ViewModelProviders.of(this).get(UserViewModel::class.java)
-
         btn_save.setOnClickListener {
 
             hideKeyboard()
@@ -68,21 +63,16 @@ class AddNewLoginFragment : Fragment(), AllLoginsActivity.OnBackPressedListener 
                     Snackbar.make(it, "Record successfully added ", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show()
 
-
-                    val user = UserEntity(
+                    viewModel.insert(
                         tiet_website.text.toString(),
                         tiet_login.text.toString(),
                         tiet_password.text.toString()
                     )
-                    vm.insert(user)
-
                     replaceFragment(ListOfItemsFragment())
                 }
             }
         }
     }
-
-
 
     override fun doBack() {
         replaceFragment(ListOfItemsFragment())
