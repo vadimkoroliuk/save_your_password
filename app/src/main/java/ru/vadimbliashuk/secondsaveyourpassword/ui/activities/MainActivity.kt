@@ -91,6 +91,12 @@ class MainActivity : AppCompatActivity() {
                         "Passwords do not match!!! ",
                         Toast.LENGTH_LONG
                     ).show()
+                } else if (et_create_password.text.toString().length < 4) {
+                    Toast.makeText(
+                        applicationContext,
+                        "Passwords is too short ",
+                        Toast.LENGTH_LONG
+                    ).show()
                 } else {
                     //If all fields are filled then fetch the data and
                     // save the data in Shared Preferences

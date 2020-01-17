@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_add_pin_code.*
 import kotlinx.android.synthetic.main.activity_change_pin.*
 import ru.vadimbliashuk.secondsaveyourpassword.R
 
@@ -33,6 +34,12 @@ class ChangePinCode : AppCompatActivity() {
                 Toast.makeText(
                     applicationContext,
                     "Passwords do not match!!! ",
+                    Toast.LENGTH_LONG
+                ).show()
+            } else if (et_create_password.text.toString().length < 4) {
+                Toast.makeText(
+                    applicationContext,
+                    "Passwords is too short ",
                     Toast.LENGTH_LONG
                 ).show()
             } else {

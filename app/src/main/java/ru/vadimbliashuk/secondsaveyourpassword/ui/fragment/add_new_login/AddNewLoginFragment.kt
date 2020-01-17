@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.add_new_login_fragment.*
 import ru.vadimbliashuk.secondsaveyourpassword.R
-import ru.vadimbliashuk.secondsaveyourpassword.data.UserViewModel
 import ru.vadimbliashuk.secondsaveyourpassword.extention.hideKeyboard
 import ru.vadimbliashuk.secondsaveyourpassword.extention.replaceFragment
 import ru.vadimbliashuk.secondsaveyourpassword.ui.activities.AllLoginsActivity
