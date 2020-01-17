@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_add_pin_code.*
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.vadimbliashuk.secondsaveyourpassword.R
+import ru.vadimbliashuk.secondsaveyourpassword.extention.toast
 
 class MainActivity : AppCompatActivity() {
 
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                             startActivity(intent)
                             finish()
                         } else {
-                            Toast.makeText(this, "Password wrong", Toast.LENGTH_LONG).show()
+                            toast(this, "Password wrong")
                             iv_1.visibility = View.INVISIBLE
                             iv_2.visibility = View.INVISIBLE
                             iv_3.visibility = View.INVISIBLE
@@ -86,17 +87,9 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext, ERROR_INPUT_EMPTY, Toast.LENGTH_LONG).show()
 
                 } else if (et_create_password.text.toString() != et_create_password_2.text.toString()) {
-                    Toast.makeText(
-                        applicationContext,
-                        "Passwords do not match!!! ",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    toast(applicationContext, "Passwords do not match!!! ")
                 } else if (et_create_password.text.toString().length < 4) {
-                    Toast.makeText(
-                        applicationContext,
-                        "Passwords is too short ",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    toast(applicationContext, "Passwords is too short ")
                 } else {
                     //If all fields are filled then fetch the data and
                     // save the data in Shared Preferences
@@ -104,7 +97,7 @@ class MainActivity : AppCompatActivity() {
                     editor.putString(PHONE_NUMBER, et_create_password.text.toString())
                     editor.apply()
 
-                    Toast.makeText(applicationContext, SAVED, Toast.LENGTH_LONG).show()
+                    toast(applicationContext, SAVED)
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()

@@ -3,11 +3,10 @@ package ru.vadimbliashuk.secondsaveyourpassword.ui.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_add_pin_code.*
 import kotlinx.android.synthetic.main.activity_change_pin.*
 import ru.vadimbliashuk.secondsaveyourpassword.R
+import ru.vadimbliashuk.secondsaveyourpassword.extention.toast
 
 class ChangePinCode : AppCompatActivity() {
 
@@ -28,27 +27,17 @@ class ChangePinCode : AppCompatActivity() {
             if (et_change_password.text.toString() == EMPTY
                 || et_change_password_2.text.toString() == EMPTY
             ) {
-                Toast.makeText(applicationContext, ERROR_INPUT_EMPTY, Toast.LENGTH_LONG).show()
-
+                toast(applicationContext, ERROR_INPUT_EMPTY)
             } else if (et_change_password.text.toString() != et_change_password_2.text.toString()) {
-                Toast.makeText(
-                    applicationContext,
-                    "Passwords do not match!!! ",
-                    Toast.LENGTH_LONG
-                ).show()
-            } else if (et_create_password.text.toString().length < 4) {
-                Toast.makeText(
-                    applicationContext,
-                    "Passwords is too short ",
-                    Toast.LENGTH_LONG
-                ).show()
+                toast(applicationContext, "Passwords do not match!!!")
+            } else if (et_change_password.text.toString().length < 4) {
+                toast(applicationContext, "Password is too short ")
             } else {
                 val editor = sharedPreferences.edit()
-
                 editor.putString(PHONE_NUMBER, et_change_password.text.toString())
                 editor.apply()
 
-                Toast.makeText(applicationContext, SAVED, Toast.LENGTH_LONG).show()
+                toast(applicationContext, SAVED)
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
